@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from 'redux/operations';
+// Without createApi-------
+// import { fetchProducts } from 'redux/operations';
+import { useFetchProductsQuery } from 'redux/rtkQuery/rtkQuery';
 import { addToCart } from 'redux/slice';
 import { Spinner } from 'components/Spinner/Spinner';
+import { getLoaderSelector, getProductsSelector } from 'redux/selectors';
+
 export const ProductsList = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const dispatch = useDispatch();
-  const { products, loader } = useSelector(store => store);
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const dispatch = useDispatch();
+
+  // Without createApi-------
+  // const products = useSelector(getProductsSelector);
+
+  const loader = useSelector(getLoaderSelector);
+
+  // With createApi---------
+  const { data: products } = useFetchProductsQuery();
+
+  // Without createApi-------
+  // useEffect(() => {
+  //   dispatch(fetchProducts());
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const handleAddProdact = el => {
-    console.log(el);
-
     dispatch(addToCart(el));
   };
 

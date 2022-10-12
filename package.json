@@ -1,8 +1,8 @@
 {
-  "name": "practice-async-thunk",
+  "name": "practice",
   "version": "0.1.0",
   "private": true,
-  "homepage": " https://maksshostak.github.io/practice-async-thunk/",
+  "homepage": " https://maksshostak.github.io/practice-async-RTK-selectors/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
     "@testing-library/jest-dom": "^5.16.3",

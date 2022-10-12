@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { getCartsSelector } from 'redux/selectors';
 import { removeFromCart } from 'redux/slice';
 export const Cart = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const state = useSelector(store => store.cart);
+  const carts = useSelector(getCartsSelector);
   const dispatch = useDispatch();
 
   return (
@@ -19,7 +20,7 @@ export const Cart = () => {
       {modalIsOpen && (
         <div>
           <ul>
-            {state?.map(({ id, name, price, description }) => (
+            {carts?.map(({ id, name, price, description }) => (
               <li key={id}>
                 <h1>{name}</h1>
                 <p>price: {price}</p>
